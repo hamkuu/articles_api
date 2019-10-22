@@ -1,4 +1,6 @@
 class Api::V1::ArticlesController < ApplicationController
+  before_action :load_article, only: [:show, :update, :destroy]
+
   def index
     articles = Article.all.order('created_at ASC')
 
@@ -6,12 +8,10 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def show
-    article = Article.find_by(id: params[:id])
-
-    if article.nil?
+    if @article.nil?
       render json: { status: false, message: 'article not found' }
     else
-      render json: { status: true, article: article }
+      render json: { status: true, article: @article }
     end
   end
 
@@ -22,22 +22,18 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def update
-    article = Article.find_by(id: params[:id])
-
-    if article.nil?
+    if @article.nil?
       render json: { status: false, message: 'article not found' }
     else
-      render json: { status: article.update(article_params) }
+      render json: { status: @article.update(article_params) }
     end
   end
 
   def destroy
-    article = Article.find_by(id: params[:id])
-
-    if article.nil?
+    if @article.nil?
       render json: { status: false, message: 'article not found' }
     else
-      article.delete
+      @article.delete
     end
 
     render json: { status: true }
@@ -47,5 +43,9 @@ class Api::V1::ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:author, :title, :content)
+  end
+
+  def load_article
+    @article = Article.find_by(id: params[:id])
   end
 end
