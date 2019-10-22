@@ -1,0 +1,14 @@
+version: '3'
+services:
+  rails_app:
+    build:
+      context: .
+      dockerfile: ./docker/rails_app/DockerFile
+    command:
+      bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      RAILS_ENV: development
+    volumes:
+      - .:/var/www/rails
+    ports:
+      - 4000:3000
