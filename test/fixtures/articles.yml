@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: author1
+  title: title1
+  content: content1
+
+two:
+  author: author2
+  title: title2
+  content: content2

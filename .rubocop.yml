@@ -1,0 +1,70 @@
+#  Cops Documentation: https://rubocop.readthedocs.io
+
+AllCops:
+  TargetRubyVersion: 2.6
+  DisplayCopNames: true
+  Include:
+    - "app/**/*.rb"
+    - "test/**/*.rb"
+    - "**/Rakefile"
+    - "**/config.ru"
+  Exclude:
+    - "db/**/*"
+    - "config/**/*"
+    - "bin/*"
+    - "script/**/*"
+
+## Style
+
+Style/ClassMethods:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyElse:
+  EnforcedStyle: empty
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+## Lint
+
+## Naming
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+## Rails
+
+Rails:
+  Enabled: true
+
+Rails/Date:
+  EnforcedStyle: flexible
+
+## Metrics
+
+Metrics/LineLength:
+  Max: 160
