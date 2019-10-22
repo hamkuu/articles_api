@@ -1,0 +1,23 @@
+{
+  "editor.formatOnSave": true,
+  "editor.fontSize": 11,
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "boundary",
+
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  "[ruby]": {
+    "editor.formatOnSave": true
+  },
+
+  "ruby.useBundler": false,
+  "ruby.lint": {
+    "rubocop": true
+  },
+
+  "rufo.exe": "rufo",
+  "rufo.useBundler": false
+}
