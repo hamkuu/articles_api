@@ -1,24 +1,26 @@
-# README
+# Prerequisites
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- docker-compose
+- Ruby 2.6.3
+- Rails 6.0.0
 
-Things you may want to cover:
+# Development Mode
 
-* Ruby version
+#### Environment variables
 
-* System dependencies
+```
+$ export COMPOSE_FILE=docker-compose.dev.yml
+```
 
-* Configuration
+#### Spinning up containers
 
-* Database creation
+```
+$ docker-compose build --no-cache
+$ docker-compose up
+```
 
-* Database initialization
+#### Rebuild and spin up containers
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ docker-compose up --build
+```
