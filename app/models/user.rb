@@ -13,6 +13,8 @@ class User < ApplicationRecord
             length: { minimum: 10, maximum: 32 },
             allow_nil: true
 
+  has_secure_token :auth_token
+
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
