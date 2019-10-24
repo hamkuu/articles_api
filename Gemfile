@@ -16,6 +16,9 @@ gem 'puma', '~> 3.11'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# A ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard. https://jwt.github.io/ruby-jwt/
+gem 'jwt', '~> 2.2.1'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
