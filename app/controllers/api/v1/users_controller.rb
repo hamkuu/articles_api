@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   before_action :basic_authenticate, only: [:generate_auth_token]
+  before_action :token_authenticate, except: [:generate_auth_token, :create]
 
   def index
     users = User.all.order('created_at ASC')
@@ -12,6 +13,10 @@ class Api::V1::UsersController < ApplicationController
     new_user = User.new(user_params)
 
     render json: { status: new_user.save, errors: new_user.errors }
+  end
+
+  def get_user_info
+    render json: { status: @user.valid?, user_info: @user }
   end
 
   def generate_auth_token
@@ -33,6 +38,15 @@ class Api::V1::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def token_authenticate
+    auth_jwt = cookies.signed[:auth_token]
+    decoded_payload = JsonWebToken.decode auth_jwt
+    decoded_auth_token = decoded_payload[0]['auth_token']
+
+    @user = User.find_by(auth_token: decoded_auth_token)
+    @user && decoded_auth_token == @user.auth_token
   end
 
   def basic_authenticate
