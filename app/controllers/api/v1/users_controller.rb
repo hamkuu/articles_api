@@ -17,10 +17,16 @@ class Api::V1::UsersController < ApplicationController
   def generate_auth_token
     status = @user.regenerate_auth_token
     payload = { auth_token: @user.auth_token }
-    # auth_jwt = JsonWebToken.encode payload
-    # save_cookie_in_browser :auth_token, auth_jwt
+    auth_jwt = JsonWebToken.encode payload
+    save_cookie_in_browser :auth_token, auth_jwt
 
     render json: { status: status, token: payload }
+  end
+
+  def revoke_auth_token
+    remove_cookie_from_browser :auth_token
+
+    render json: { status: true, message: 'auth_token has been revoked.' }
   end
 
   private
